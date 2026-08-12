@@ -188,6 +188,36 @@
                 "Pague apenas uma vez e tenha acesso imediato ao material."
               );
             }
+            if (textNode.nodeValue.includes("Rafael Souza")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Rafael Souza",
+                "Gabriel Alves"
+              );
+            }
+            if (textNode.nodeValue.includes("designer e empreendedor cristão há mais de 8 anos no mercado de estamparia.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "designer e empreendedor cristão há mais de 8 anos no mercado de estamparia.",
+                "designer e empreendedor cristão há mais de 5 anos no mercado de estamparia."
+              );
+            }
+            if (textNode.nodeValue.includes("3.500 alunos")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "3.500 alunos",
+                "2.700 clientes"
+              );
+            }
+            if (textNode.nodeValue.includes("a faturarem com camisetas cristãs em todo o Brasil.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "a faturarem com camisetas cristãs em todo o Brasil.",
+                "a criarem e venderem camisetas cristãs em todo o Brasil."
+              );
+            }
+            if (textNode.nodeValue.includes("Esse pacote é o resultado de anos testando o que realmente vende. Cada arte foi criada pensando em uma coisa:")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Esse pacote é o resultado de anos testando o que realmente vende. Cada arte foi criada pensando em uma coisa:",
+                "Esse pacote é o resultado de anos analisando e testando o que realmente vende. Cada estampa foi criada pensando em uma coisa:"
+              );
+            }
           });
           document.querySelectorAll("h3").forEach((heading) => {
             if (heading.textContent.includes("Pacote Premium")) {
