@@ -16,6 +16,51 @@
       @media (min-width: 640px) {
         .headline-break { display: block; }
       }
+      @media (max-width: 639px) {
+        section:has(img[alt*="criador"]) {
+          padding-top: 3.5rem;
+          padding-bottom: 3.5rem;
+        }
+        section:has(img[alt*="criador"]) > div {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        section:has(img[alt*="criador"]) .reveal {
+          gap: 2rem;
+        }
+        section:has(img[alt*="criador"]) h2 {
+          max-width: 20rem;
+          margin-left: auto;
+          margin-right: auto;
+          font-size: 2.25rem;
+          line-height: 1.05;
+          text-wrap: balance;
+        }
+        section:has(img[alt*="criador"]) .grid-cols-3 {
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+        }
+        section:has(img[alt*="criador"]) .grid-cols-3 > div {
+          padding: 0.75rem 0.35rem;
+        }
+        section:has(img[alt*="criador"]) .grid-cols-3 > div > div:first-child {
+          font-size: 1.5rem;
+        }
+        section:has(img[alt*="criador"]) .grid-cols-3 > div > div:last-child {
+          font-size: 0.65rem;
+          line-height: 1.15;
+        }
+        section:has(img[alt*="criador"]) .relative.mx-auto.max-w-md {
+          width: min(100%, 20rem);
+        }
+        section:has(img[alt*="criador"]) img {
+          width: 100%;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
+          object-position: center 15%;
+          border-radius: 1.25rem;
+        }
+      }
     </style>
     <script async="" src="js/fbevents.js"></script><script type="application/ld+json">
       {"@context":"https://schema.org","@type":"Product","name":"3000+ Artes Cristãs Premium para Camisetas e Estamparia","description":"Mais de 1000 artes cristãs profissionais prontas para estampar e vender.","offers":{"@type":"Offer","price":"27.00","priceCurrency":"BRL","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"847"}}
