@@ -56,6 +56,12 @@
             if (textNode.nodeValue.includes("Organização Profissional")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Organização Profissional", "Artes Organizadas");
             }
+            if (textNode.nodeValue.includes("Veja alguns feedbacks reais de clientes que já estão utilizando as artes.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Veja alguns feedbacks reais de clientes que já estão utilizando as artes.",
+                "Veja alguns depoimentos reais de clientes que já estão utilizando as estampas."
+              );
+            }
             if (textNode.nodeValue.includes("Novos designs adicionados todos os meses, sem custo extra.")) {
               textNode.nodeValue = textNode.nodeValue.replace(
                 "Novos designs adicionados todos os meses, sem custo extra.",
