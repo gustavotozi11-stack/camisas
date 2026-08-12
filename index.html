@@ -496,6 +496,82 @@
         updateCount();
       })();
     </script>
+    <script>
+      (() => {
+        const removeVideoOptions = () => {
+          document.querySelectorAll("video").forEach((video) => {
+            video.controls = false;
+            video.removeAttribute("controls");
+
+            const frame = video.parentElement;
+            if (!frame) return;
+
+            Array.from(frame.children).forEach((element) => {
+              if (
+                element !== video &&
+                !element.hasAttribute("data-sound-notice") &&
+                (element.matches("button") || element.matches("div"))
+              ) {
+                element.remove();
+              }
+            });
+
+            const walker = document.createTreeWalker(frame, NodeFilter.SHOW_TEXT);
+            const viewerLabels = [];
+            let textNode;
+            while ((textNode = walker.nextNode())) {
+              if (/^\d[\d.]*\s+assistindo$/.test(textNode.nodeValue.trim())) {
+                viewerLabels.push(textNode);
+              }
+            }
+            viewerLabels.forEach((label) => {
+              const badge = label.parentElement?.closest("div");
+              if (badge && badge !== frame) badge.remove();
+            });
+
+            if (!frame.querySelector("[data-sound-notice]")) {
+              const notice = document.createElement("button");
+              notice.type = "button";
+              notice.dataset.soundNotice = "true";
+              notice.textContent = "🔊 Clique aqui e ative o som";
+              Object.assign(notice.style, {
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                zIndex: "20",
+                transform: "translate(-50%, -50%)",
+                border: "0",
+                borderRadius: "9999px",
+                background: "#fbbf24",
+                color: "#111827",
+                padding: "12px 20px",
+                fontSize: "14px",
+                fontWeight: "700",
+                lineHeight: "1.2",
+                whiteSpace: "nowrap",
+                cursor: "pointer",
+                boxShadow: "0 4px 14px rgba(0, 0, 0, 0.35)",
+              });
+              notice.addEventListener("click", () => {
+                video.muted = false;
+                video.volume = 1;
+                const playback = video.play();
+                if (playback) playback.catch(() => {});
+                notice.remove();
+              });
+              frame.append(notice);
+            }
+          });
+        };
+
+        new MutationObserver(removeVideoOptions).observe(document.body, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+        removeVideoOptions();
+      })();
+    </script>
   
 
 </body></html>
