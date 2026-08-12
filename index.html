@@ -424,7 +424,20 @@
                   if (bonusLabels.length > 1) {
                      bonusLabels[0].textContent = "✕";
                      bonusLabels[0].classList.remove("bg-cta", "text-cta-foreground", "bg-danger", "text-danger-foreground");
-                     bonusLabels[0].classList.add("bg-muted", "text-muted-foreground");
+                     bonusLabels[0].classList.add("rounded-full", "inline-flex", "items-center", "justify-center");
+                     Object.assign(bonusLabels[0].style, {
+                       width: "1.25rem",
+                       minWidth: "1.25rem",
+                       height: "1.25rem",
+                       padding: "0",
+                       borderRadius: "9999px",
+                       backgroundColor: "#374151",
+                       color: "#d1d5db",
+                       fontSize: "0.75rem",
+                       lineHeight: "1",
+                       fontWeight: "700",
+                       flexShrink: "0"
+                     });
                     bonusLabels[bonusLabels.length - 1].textContent = bonusText;
                      bonusLabels[bonusLabels.length - 1].classList.remove("text-danger");
                      bonusLabels[bonusLabels.length - 1].classList.add("text-muted-foreground", "line-through");
