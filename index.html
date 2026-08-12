@@ -379,23 +379,26 @@
           });
           document.querySelectorAll('[role="dialog"] > div.relative').forEach((popup) => {
             popup.className = popup.className
-              .replace("max-w-lg", "max-w-md")
+              .replace("max-w-lg", "max-w-sm")
+              .replace("max-w-md", "max-w-sm")
               .replace("max-h-[90vh]", "max-h-[calc(100vh-2rem)]");
+            popup.style.transform = "scale(0.9)";
+            popup.style.transformOrigin = "center center";
             const header = popup.querySelector("div.relative.bg-gradient-to-br");
             if (header) {
-              header.className = header.className.replace("px-6 py-8", "px-4 py-4");
+              header.className = header.className.replace("px-6 py-8", "px-3 py-3").replace("px-4 py-4", "px-3 py-3");
               const icon = header.querySelector("div.mx-auto.mb-3");
-              if (icon) icon.className = icon.className.replace("mb-3 h-14 w-14", "mb-2 h-10 w-10").replace("text-3xl", "text-2xl");
+              if (icon) icon.className = icon.className.replace("mb-3 h-14 w-14", "mb-1 h-8 w-8").replace("mb-2 h-10 w-10", "mb-1 h-8 w-8").replace("text-3xl", "text-xl").replace("text-2xl", "text-xl");
               const title = header.querySelector("h3");
-              if (title) title.className = title.className.replace("mt-3 text-2xl", "mt-2 text-xl").replace("sm:text-3xl", "sm:text-2xl");
+              if (title) title.className = title.className.replace("mt-3 text-2xl", "mt-1 text-lg").replace("mt-2 text-xl", "mt-1 text-lg").replace("sm:text-3xl", "sm:text-xl").replace("sm:text-2xl", "sm:text-xl");
               const offer = header.querySelector("div.rounded-xl.border");
-              if (offer) offer.className = offer.className.replace("p-5", "p-3");
+              if (offer) offer.className = offer.className.replace("p-5", "p-2").replace("p-3", "p-2");
               const price = header.querySelector("span.text-6xl");
-              if (price) price.className = price.className.replace("text-6xl", "text-5xl").replace("sm:text-7xl", "sm:text-6xl");
+              if (price) price.className = price.className.replace("text-6xl", "text-4xl").replace("text-5xl", "text-4xl").replace("sm:text-7xl", "sm:text-5xl").replace("sm:text-6xl", "sm:text-5xl");
               const list = header.querySelector("ul.mt-5");
               if (list) list.className = list.className.replace("mt-5 space-y-2", "mt-3 space-y-1");
               const actions = header.querySelector("div.mt-6");
-              if (actions) actions.className = actions.className.replace("mt-6", "mt-3");
+              if (actions) actions.className = actions.className.replace("mt-6", "mt-2").replace("mt-3", "mt-2");
             }
           });
         };
