@@ -529,17 +529,17 @@
               if (badge && badge !== frame) badge.remove();
             });
 
-            const showSoundNotice = () => {
-              if (!video.muted || frame.querySelector("[data-sound-notice]")) return;
+            const showPlaybackNotice = () => {
+              if (!video.paused || frame.querySelector("[data-sound-notice]")) return;
 
               const notice = document.createElement("button");
               notice.type = "button";
               notice.dataset.soundNotice = "true";
-              notice.setAttribute("aria-label", "Toque para assistir");
+              notice.setAttribute("aria-label", "Toque para despausar o vídeo com áudio");
               notice.innerHTML = `
-                <span aria-hidden="true" style="font-size:1.35em;line-height:1">🔊</span>
-                <span>TOQUE PARA ASSISTIR</span>
-                <span aria-hidden="true" style="letter-spacing:-0.14em;font-size:1.1em">)))</span>
+                <span aria-hidden="true" style="font-size:1.35em;line-height:1">▶</span>
+                <span>TOQUE PARA DESPAUSAR</span>
+                <span aria-hidden="true" style="font-size:1.05em">🔊</span>
               `;
               Object.assign(notice.style, {
                 position: "absolute",
@@ -577,29 +577,34 @@
                 video.volume = 1;
                 const playback = video.play();
                 if (playback) playback.catch(() => {});
-                notice.remove();
               });
               frame.append(notice);
             };
 
-            const hideSoundNotice = () => {
+            const hidePlaybackNotice = () => {
               frame.querySelector("[data-sound-notice]")?.remove();
             };
 
-            if (!video.dataset.soundToggleBound) {
+            if (!video.dataset.playbackToggleBound) {
               video.addEventListener("click", () => {
-                if (!video.muted) {
-                  video.muted = true;
-                  showSoundNotice();
+                if (video.paused) {
+                  video.muted = false;
+                  video.volume = 1;
+                  const playback = video.play();
+                  if (playback) playback.catch(() => {});
+                } else {
+                  video.pause();
                 }
               });
-              video.dataset.soundToggleBound = "true";
+              video.addEventListener("play", hidePlaybackNotice);
+              video.addEventListener("pause", showPlaybackNotice);
+              video.dataset.playbackToggleBound = "true";
             }
 
-            if (video.muted) {
-              showSoundNotice();
+            if (video.paused) {
+              showPlaybackNotice();
             } else {
-              hideSoundNotice();
+              hidePlaybackNotice();
             }
           });
         };
