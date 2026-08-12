@@ -72,6 +72,13 @@
       fbq('track','PageView');
     </script>
     <!-- End Meta Pixel Code -->
+    <script>
+      (() => {
+        const nativeSetInterval = window.setInterval.bind(window);
+        window.setInterval = (callback, delay, ...args) =>
+          nativeSetInterval(callback, delay === 5000 ? 12000 : delay, ...args);
+      })();
+    </script>
     <script type="module" crossorigin="" src="js/index-CgpBdBbW.js"></script>
     <link rel="stylesheet" crossorigin="" href="css/index-C_Fjkiyz.css">
     <link rel="preload" as="image" href="js/t1-BbkkOKAq.png" fetchpriority="high">
