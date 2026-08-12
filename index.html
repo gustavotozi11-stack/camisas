@@ -218,6 +218,12 @@
                 "Esse pacote é o resultado de anos analisando e testando o que realmente vende. Cada estampa foi criada pensando em uma coisa:"
               );
             }
+            if (textNode.nodeValue.trim() === "8+") {
+              textNode.nodeValue = "5+";
+            }
+            if (textNode.nodeValue.trim() === "3.5k") {
+              textNode.nodeValue = "2.7k";
+            }
           });
           document.querySelectorAll("h3").forEach((heading) => {
             if (heading.textContent.includes("Pacote Premium")) {
@@ -292,6 +298,7 @@
                   const bonusLabels = bonusItem.querySelectorAll("span");
                   if (bonusLabels.length > 1) {
                     bonusLabels[bonusLabels.length - 1].textContent = bonusText;
+                     bonusLabels[bonusLabels.length - 1].classList.add("line-through");
                   }
                   return bonusItem;
                 });
