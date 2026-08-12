@@ -502,6 +502,9 @@
           document.querySelectorAll("video").forEach((video) => {
             video.controls = false;
             video.removeAttribute("controls");
+            video.autoplay = false;
+            video.removeAttribute("autoplay");
+            video.pause();
 
             const frame = video.parentElement;
             if (!frame) return;
@@ -535,11 +538,10 @@
               const notice = document.createElement("button");
               notice.type = "button";
               notice.dataset.soundNotice = "true";
-              notice.setAttribute("aria-label", "Toque para despausar o vídeo com áudio");
+              notice.setAttribute("aria-label", "Clique para assistir ao vídeo");
               notice.innerHTML = `
                 <span aria-hidden="true" style="font-size:1.35em;line-height:1">▶</span>
-                <span>TOQUE PARA DESPAUSAR</span>
-                <span aria-hidden="true" style="font-size:1.05em">🔊</span>
+                <span>CLIQUE PARA ASSISTIR</span>
               `;
               Object.assign(notice.style, {
                 position: "absolute",
