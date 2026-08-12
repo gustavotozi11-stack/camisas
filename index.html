@@ -380,7 +380,23 @@
           document.querySelectorAll('[role="dialog"] > div.relative').forEach((popup) => {
             popup.className = popup.className
               .replace("max-w-lg", "max-w-md")
-              .replace("max-h-[90vh]", "max-h-[85vh]");
+              .replace("max-h-[90vh]", "max-h-[calc(100vh-2rem)]");
+            const header = popup.querySelector("div.relative.bg-gradient-to-br");
+            if (header) {
+              header.className = header.className.replace("px-6 py-8", "px-4 py-4");
+              const icon = header.querySelector("div.mx-auto.mb-3");
+              if (icon) icon.className = icon.className.replace("mb-3 h-14 w-14", "mb-2 h-10 w-10").replace("text-3xl", "text-2xl");
+              const title = header.querySelector("h3");
+              if (title) title.className = title.className.replace("mt-3 text-2xl", "mt-2 text-xl").replace("sm:text-3xl", "sm:text-2xl");
+              const offer = header.querySelector("div.rounded-xl.border");
+              if (offer) offer.className = offer.className.replace("p-5", "p-3");
+              const price = header.querySelector("span.text-6xl");
+              if (price) price.className = price.className.replace("text-6xl", "text-5xl").replace("sm:text-7xl", "sm:text-6xl");
+              const list = header.querySelector("ul.mt-5");
+              if (list) list.className = list.className.replace("mt-5 space-y-2", "mt-3 space-y-1");
+              const actions = header.querySelector("div.mt-6");
+              if (actions) actions.className = actions.className.replace("mt-6", "mt-3");
+            }
           });
         };
         new MutationObserver(updateCount).observe(document.body, {
