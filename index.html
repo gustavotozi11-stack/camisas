@@ -179,6 +179,12 @@
                 "Não! As estampas já estão prontas para usar. Basta baixar e enviar para a sua estamparia ou impressora."
               );
             }
+            if (textNode.nodeValue.trim() === "Novas coleções futuras") {
+              textNode.nodeValue = "Garantia de 7 dias";
+            }
+            if (textNode.nodeValue.trim() === "Mais de 2.500 artes premium") {
+              textNode.nodeValue = "Mais de 3000 artes exclusivas";
+            }
             if (textNode.nodeValue.includes("Sem Suporte")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Sem Suporte", "Suporte Exclusivo");
             }
@@ -366,6 +372,11 @@
               textNode.replaceWith(fragment);
               break;
             }
+          });
+          document.querySelectorAll('[role="dialog"] > div.relative').forEach((popup) => {
+            popup.className = popup.className
+              .replace("max-w-lg", "max-w-md")
+              .replace("max-h-[90vh]", "max-h-[85vh]");
           });
         };
         new MutationObserver(updateCount).observe(document.body, {
