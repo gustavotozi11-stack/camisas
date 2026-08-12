@@ -337,10 +337,11 @@
                   const bonusLabels = bonusItem.querySelectorAll("span");
                   if (bonusLabels.length > 1) {
                      bonusLabels[0].textContent = "✕";
-                     bonusLabels[0].classList.remove("bg-cta", "text-cta-foreground");
-                     bonusLabels[0].classList.add("bg-danger", "text-danger-foreground");
+                     bonusLabels[0].classList.remove("bg-cta", "text-cta-foreground", "bg-danger", "text-danger-foreground");
+                     bonusLabels[0].classList.add("bg-muted", "text-muted-foreground");
                     bonusLabels[bonusLabels.length - 1].textContent = bonusText;
-                     bonusLabels[bonusLabels.length - 1].classList.add("text-danger", "line-through");
+                     bonusLabels[bonusLabels.length - 1].classList.remove("text-danger");
+                     bonusLabels[bonusLabels.length - 1].classList.add("text-muted-foreground", "line-through");
                   }
                   return bonusItem;
                 });
