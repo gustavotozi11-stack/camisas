@@ -529,11 +529,13 @@
               if (badge && badge !== frame) badge.remove();
             });
 
-            if (!frame.querySelector("[data-sound-notice]")) {
+            const showSoundNotice = () => {
+              if (!video.muted || frame.querySelector("[data-sound-notice]")) return;
+
               const notice = document.createElement("button");
               notice.type = "button";
               notice.dataset.soundNotice = "true";
-              notice.textContent = "🔊 Clique aqui e ative o som";
+              notice.textContent = "Clique aqui e ative o som";
               Object.assign(notice.style, {
                 position: "absolute",
                 left: "50%",
@@ -541,18 +543,18 @@
                 zIndex: "20",
                 transform: "translate(-50%, -50%)",
                 border: "0",
-                borderRadius: "9999px",
-                background: "#fbbf24",
-                color: "#111827",
-                padding: "12px 20px",
+                background: "transparent",
+                color: "#ffffff",
+                padding: "8px",
                 fontSize: "14px",
                 fontWeight: "700",
                 lineHeight: "1.2",
                 whiteSpace: "nowrap",
                 cursor: "pointer",
-                boxShadow: "0 4px 14px rgba(0, 0, 0, 0.35)",
+                textShadow: "0 2px 8px rgba(0, 0, 0, 0.95)",
               });
-              notice.addEventListener("click", () => {
+              notice.addEventListener("click", (event) => {
+                event.stopPropagation();
                 video.muted = false;
                 video.volume = 1;
                 const playback = video.play();
@@ -560,6 +562,26 @@
                 notice.remove();
               });
               frame.append(notice);
+            };
+
+            const hideSoundNotice = () => {
+              frame.querySelector("[data-sound-notice]")?.remove();
+            };
+
+            if (!video.dataset.soundToggleBound) {
+              video.addEventListener("click", () => {
+                if (!video.muted) {
+                  video.muted = true;
+                  showSoundNotice();
+                }
+              });
+              video.dataset.soundToggleBound = "true";
+            }
+
+            if (video.muted) {
+              showSoundNotice();
+            } else {
+              hideSoundNotice();
             }
           });
         };
