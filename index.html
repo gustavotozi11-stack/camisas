@@ -3,16 +3,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/favicon.png">
-    <title>2500+ Artes Cristãs Premium para Camisetas e Estamparia</title>
-    <meta name="description" content="Mais de 2500 artes cristãs profissionais prontas para estampar e vender. Acesso vitalício, uso comercial liberado e bônus exclusivos por R$27.">
-    <meta property="og:title" content="2500+ Artes Cristãs Premium para Camisetas">
+    <title>3000+ Artes Cristãs Premium para Camisetas e Estamparia</title>
+    <meta name="description" content="Mais de 3000 artes cristãs profissionais prontas para estampar e vender. Acesso vitalício, uso comercial liberado e bônus exclusivos por R$27.">
+    <meta property="og:title" content="3000+ Artes Cristãs Premium para Camisetas">
     <meta property="og:description" content="Pacote completo com 1000+ designs cristãos, bônus exclusivos e acesso vitalício. Comece a vender hoje.">
     <meta property="og:type" content="product">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap">
     <script async="" src="js/fbevents.js"></script><script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Product","name":"2500+ Artes Cristãs Premium para Camisetas e Estamparia","description":"Mais de 1000 artes cristãs profissionais prontas para estampar e vender.","offers":{"@type":"Offer","price":"27.00","priceCurrency":"BRL","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"847"}}
+      {"@context":"https://schema.org","@type":"Product","name":"3000+ Artes Cristãs Premium para Camisetas e Estamparia","description":"Mais de 1000 artes cristãs profissionais prontas para estampar e vender.","offers":{"@type":"Offer","price":"27.00","priceCurrency":"BRL","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"847"}}
     </script>
     <!-- Meta Pixel Code -->
     <script>
@@ -27,6 +27,27 @@
   <body>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1645160226740517&ev=PageView&noscript=1" alt="" /></noscript>
     <div id="root"></div>
+    <script>
+      (() => {
+        const updateCount = () => {
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+          const textNodes = [];
+          let node;
+          while ((node = walker.nextNode())) textNodes.push(node);
+          textNodes.forEach((textNode) => {
+            if (textNode.nodeValue.includes("2500")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("2500", "3000");
+            }
+          });
+        };
+        new MutationObserver(updateCount).observe(document.body, {
+          childList: true,
+          subtree: true,
+          characterData: true
+        });
+        updateCount();
+      })();
+    </script>
   
 
 </body></html>
