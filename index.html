@@ -128,6 +128,18 @@
                 "Estampas exclusivas e prontas para impressão para quem deseja criar ou expandir um negócio de camisetas cristãs."
               );
             }
+            if (textNode.nodeValue.includes("Escolha Seu Acesso")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Escolha Seu Acesso",
+                "Escolha Seu Plano"
+              );
+            }
+            if (textNode.nodeValue.includes("Invista apenas uma vez e tenha acesso imediato ao material.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Invista apenas uma vez e tenha acesso imediato ao material.",
+                "Pague apenas uma vez e tenha acesso imediato ao material."
+              );
+            }
           });
           document.querySelectorAll("h1").forEach((heading) => {
             const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
