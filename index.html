@@ -298,7 +298,7 @@
                   const bonusLabels = bonusItem.querySelectorAll("span");
                   if (bonusLabels.length > 1) {
                     bonusLabels[bonusLabels.length - 1].textContent = bonusText;
-                     bonusLabels[bonusLabels.length - 1].classList.add("line-through");
+                     bonusLabels[bonusLabels.length - 1].classList.add("text-danger", "line-through");
                   }
                   return bonusItem;
                 });
