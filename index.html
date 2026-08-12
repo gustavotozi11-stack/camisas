@@ -74,10 +74,30 @@
     <!-- End Meta Pixel Code -->
     <script type="module" crossorigin="" src="js/index-CgpBdBbW.js"></script>
     <link rel="stylesheet" crossorigin="" href="css/index-C_Fjkiyz.css">
+    <link rel="preload" as="image" href="js/t1-BbkkOKAq.png" fetchpriority="high">
+    <link rel="preload" as="image" href="js/t2-BbG83Kz-.png" fetchpriority="high">
+    <link rel="preload" as="image" href="js/t3-Dm-dCFaj.png" fetchpriority="high">
+    <link rel="preload" as="image" href="js/t4-D_HzFK_P.png" fetchpriority="high">
   </head>
   <body>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1645160226740517&ev=PageView&noscript=1" alt="" /></noscript>
     <div id="root"></div>
+    <script>
+      (() => {
+        const prioritizeTestimonials = () => {
+          document.querySelectorAll('img[alt^="Depoimento de "]').forEach((image) => {
+            image.loading = "eager";
+            image.fetchPriority = "high";
+            image.decoding = "async";
+          });
+        };
+        new MutationObserver(prioritizeTestimonials).observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+        prioritizeTestimonials();
+      })();
+    </script>
     <script>
       (() => {
         const updateCount = () => {
