@@ -506,6 +506,12 @@
             const frame = video.parentElement;
             if (!frame) return;
 
+            video.autoplay = false;
+            video.removeAttribute("autoplay");
+            if (!video.dataset.videoStarted) {
+              video.pause();
+            }
+
             Array.from(frame.children).forEach((element) => {
               if (
                 element !== video &&
@@ -529,17 +535,16 @@
               if (badge && badge !== frame) badge.remove();
             });
 
-            const showSoundNotice = () => {
-              if (!video.muted || frame.querySelector("[data-sound-notice]")) return;
+            const showPlayControl = () => {
+              if (frame.querySelector("[data-sound-notice]")) return;
 
               const notice = document.createElement("button");
               notice.type = "button";
               notice.dataset.soundNotice = "true";
               notice.setAttribute("aria-label", "Toque para assistir");
               notice.innerHTML = `
-                <span aria-hidden="true" style="font-size:1.35em;line-height:1">🔊</span>
-                <span>TOQUE PARA ASSISTIR</span>
-                <span aria-hidden="true" style="letter-spacing:-0.14em;font-size:1.1em">)))</span>
+                <span data-play-icon aria-hidden="true" style="font-size:1.35em;line-height:1">▶</span>
+                <span data-play-label>TOQUE PARA ASSISTIR</span>
               `;
               Object.assign(notice.style, {
                 position: "absolute",
@@ -570,36 +575,41 @@
                 ],
                 { duration: 1500, iterations: Infinity, easing: "ease-in-out" }
               );
+
+              const updatePlayControl = () => {
+                const icon = notice.querySelector("[data-play-icon]");
+                const label = notice.querySelector("[data-play-label]");
+                const isPlaying = !video.paused;
+                if (icon) icon.textContent = isPlaying ? "⏸" : "▶";
+                if (label) label.textContent = isPlaying ? "PAUSAR" : (video.dataset.videoStarted ? "CONTINUAR" : "TOQUE PARA ASSISTIR");
+                notice.setAttribute("aria-label", isPlaying ? "Pausar vídeo" : "Reproduzir vídeo");
+              };
+
               notice.addEventListener("click", (event) => {
                 event.stopPropagation();
-                video.muted = false;
-                video.volume = 1;
-                const playback = video.play();
-                if (playback) playback.catch(() => {});
-                notice.remove();
+                video.dataset.videoStarted = "true";
+                if (video.paused) {
+                  const playback = video.play();
+                  if (playback) playback.catch(() => {});
+                } else {
+                  video.pause();
+                }
+                updatePlayControl();
               });
               frame.append(notice);
+              video.addEventListener("play", updatePlayControl);
+              video.addEventListener("pause", updatePlayControl);
+              updatePlayControl();
             };
 
-            const hideSoundNotice = () => {
-              frame.querySelector("[data-sound-notice]")?.remove();
-            };
-
-            if (!video.dataset.soundToggleBound) {
-              video.addEventListener("click", () => {
-                if (!video.muted) {
-                  video.muted = true;
-                  showSoundNotice();
-                }
+            if (!video.dataset.playGateBound) {
+              video.addEventListener("play", () => {
+                if (!video.dataset.videoStarted) video.pause();
               });
-              video.dataset.soundToggleBound = "true";
+              video.dataset.playGateBound = "true";
             }
 
-            if (video.muted) {
-              showSoundNotice();
-            } else {
-              hideSoundNotice();
-            }
+            showPlayControl();
           });
         };
 
