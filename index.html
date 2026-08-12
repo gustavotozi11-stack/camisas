@@ -44,6 +44,18 @@
             if (textNode.nodeValue.includes("2500")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("2500", "3000");
             }
+            if (textNode.nodeValue.includes("Pacote Premium")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Pacote Premium", "Plano Premium");
+            }
+            if (textNode.nodeValue.includes("Atualizações Vitalícias")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Atualizações Vitalícias", "Atualizações Semanais");
+            }
+            if (textNode.nodeValue.includes("Suporte Prioritário")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Suporte Prioritário", "Suporte Exclusivo");
+            }
+            if (textNode.nodeValue.includes("Sem Bônus")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Sem Bônus", "Bônus Exclusivos");
+            }
             if (textNode.nodeValue.includes("Profissionais Para")) {
               textNode.nodeValue = textNode.nodeValue.replace("Profissionais Para", "Prontas Para");
             }
