@@ -11,6 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap">
+    <style>
+      .headline-break { display: none; }
+      @media (min-width: 640px) {
+        .headline-break { display: block; }
+      }
+    </style>
     <script async="" src="js/fbevents.js"></script><script type="application/ld+json">
       {"@context":"https://schema.org","@type":"Product","name":"3000+ Artes Cristãs Premium para Camisetas e Estamparia","description":"Mais de 1000 artes cristãs profissionais prontas para estampar e vender.","offers":{"@type":"Offer","price":"27.00","priceCurrency":"BRL","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"847"}}
     </script>
@@ -40,6 +46,27 @@
             }
             if (textNode.nodeValue.includes("Profissionais Para")) {
               textNode.nodeValue = textNode.nodeValue.replace("Profissionais Para", "Prontas Para");
+            }
+          });
+          document.querySelectorAll("h1").forEach((heading) => {
+            const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+            let textNode;
+            while ((textNode = walker.nextNode())) {
+              const phrase = "Prontas Para Estampar e Vender";
+              const index = textNode.nodeValue.indexOf(phrase);
+              if (index === -1) continue;
+              const fragment = document.createDocumentFragment();
+              fragment.append(
+                document.createTextNode(textNode.nodeValue.slice(0, index) + "Prontas Para")
+              );
+              const lineBreak = document.createElement("br");
+              lineBreak.className = "headline-break";
+              fragment.append(lineBreak);
+              fragment.append(
+                document.createTextNode(" Estampar e Vender" + textNode.nodeValue.slice(index + phrase.length))
+              );
+              textNode.replaceWith(fragment);
+              break;
             }
           });
         };
