@@ -179,6 +179,9 @@
             const card = heading.closest("div.reveal");
             const list = card && card.querySelector("ul");
             if (!list) return;
+            Array.from(list.querySelectorAll("li"))
+              .filter((item) => item.textContent.includes("Sem Novas Coleções"))
+              .forEach((item) => item.remove());
             const supportItem = Array.from(list.querySelectorAll("li")).find((item) =>
               item.textContent.includes("Suporte Exclusivo")
             );
