@@ -44,6 +44,15 @@
             if (textNode.nodeValue.includes("2500")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("2500", "3000");
             }
+            if (textNode.nodeValue.includes("R$ 27,00")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("R$ 27,00", "R$ 19,00");
+            }
+            if (textNode.nodeValue.trim() === "27") {
+              textNode.nodeValue = textNode.nodeValue.replace("27", "19");
+            }
+            if (textNode.nodeValue.trim() === "22") {
+              textNode.nodeValue = textNode.nodeValue.replace("22", "14");
+            }
             if (textNode.nodeValue.includes("Pacote Premium")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Pacote Premium", "Plano Premium");
             }
