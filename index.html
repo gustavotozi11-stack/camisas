@@ -149,6 +149,36 @@
                 "Acesso liberado imediatamente após a confirmação do pagamento."
               );
             }
+            if (textNode.nodeValue.includes("Imediatamente após o pagamento você recebe um e-mail com o link de acesso à área de membros, onde estão todas as artes e bônus.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Imediatamente após o pagamento você recebe um e-mail com o link de acesso à área de membros, onde estão todas as artes e bônus.",
+                "Após a confirmação do pgamento você recebe o acesso imediato as artes e os bônus via g-mail."
+              );
+            }
+            if (textNode.nodeValue.includes("Sim! O uso é 100% comercial e liberado. Você pode estampar e vender quantas camisetas quiser, sem limites.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Sim! O uso é 100% comercial e liberado. Você pode estampar e vender quantas camisetas quiser, sem limites.",
+                "Sim! O uso comercial é totalmente liberado. Você pode estampar e vender quantas camisetas quiser, sem limites."
+              );
+            }
+            if (textNode.nodeValue.includes("Sim. Pagamento único, sem mensalidades. Você terá acesso para sempre, incluindo todas as atualizações futuras.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Sim. Pagamento único, sem mensalidades. Você terá acesso para sempre, incluindo todas as atualizações futuras.",
+                "Sim. Você paga apenas uma vez e tem  acesso para sempre, incluindo todas as atualizações futuras."
+              );
+            }
+            if (textNode.nodeValue.includes("Você tem 7 dias para testar. Se por qualquer motivo não gostar, devolvemos 100% do seu investimento, sem perguntas.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Você tem 7 dias para testar. Se por qualquer motivo não gostar, devolvemos 100% do seu investimento, sem perguntas.",
+                "Você tem 7 dias para testar. Se por qualquer motivo não gostar, devolvemos 100% do seu dinheiro, sem burocrácia."
+              );
+            }
+            if (textNode.nodeValue.includes("Não! As artes já estão prontas para usar. Basta baixar e enviar para a sua estamparia ou impressora.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Não! As artes já estão prontas para usar. Basta baixar e enviar para a sua estamparia ou impressora.",
+                "Não! As estampas já estão prontas para usar. Basta baixar e enviar para a sua estamparia ou impressora."
+              );
+            }
             if (textNode.nodeValue.includes("Sem Suporte")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Sem Suporte", "Suporte Exclusivo");
             }
