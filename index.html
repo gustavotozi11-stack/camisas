@@ -47,6 +47,12 @@
             if (textNode.nodeValue.includes("1.247")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("1.247", "1.135");
             }
+            if (textNode.nodeValue.includes("Mais de 87% dos clientes escolhem o Premium")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Mais de 87% dos clientes escolhem o Premium",
+                "Mais de 91% dos clientes escolhem o Premium"
+              );
+            }
             if (textNode.nodeValue.includes("Não gostou? Devolvemos 100%.")) {
               textNode.nodeValue = textNode.nodeValue.replace(
                 "Não gostou? Devolvemos 100%.",
