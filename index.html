@@ -191,6 +191,32 @@
               if (isBasicPlan) labels[labels.length - 1].classList.add("line-through");
             }
             supportItem.before(guaranteeItem);
+            if (isPremiumPlan && !list.querySelector('[data-bonus-item="true"]')) {
+              const oldBonusItems = Array.from(list.querySelectorAll("li")).filter((item) =>
+                item.textContent.includes("Todos os Bônus Inclusos") ||
+                item.textContent.includes("Novas Coleções Futuras")
+              );
+              const bonusTemplate = oldBonusItems[0] || supportItem;
+              oldBonusItems.forEach((item) => item.remove());
+              const bonusAnchor = Array.from(list.querySelectorAll("li")).find((item) =>
+                item.textContent.includes("Suporte Exclusivo")
+              );
+              if (bonusAnchor && bonusTemplate) {
+                [
+                  "Bônus 1: Pacote de 150 Fontes Cristãs",
+                  "Bônus 2: Planilha de Custos e Precificação",
+                  "Bônus 3: Calendário de Datas Cristãs"
+                ].forEach((bonusText) => {
+                  const bonusItem = bonusTemplate.cloneNode(true);
+                  bonusItem.dataset.bonusItem = "true";
+                  const bonusLabels = bonusItem.querySelectorAll("span");
+                  if (bonusLabels.length > 1) {
+                    bonusLabels[bonusLabels.length - 1].textContent = bonusText;
+                  }
+                  bonusAnchor.before(bonusItem);
+                });
+              }
+            }
           });
           document.querySelectorAll("h2").forEach((heading) => {
             if (heading.textContent.includes("Escolha Seu Acesso")) {
