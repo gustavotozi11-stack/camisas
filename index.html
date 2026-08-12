@@ -50,6 +50,30 @@
             if (textNode.nodeValue.includes("Atualizações Futuras")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Atualizações Futuras", "Atualizações Semanais");
             }
+            if (textNode.nodeValue.includes("Atualizações Constantes")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Atualizações Constantes", "Atualizações Semanais");
+            }
+            if (textNode.nodeValue.includes("Novos designs adicionados todos os meses, sem custo extra.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Novos designs adicionados todos os meses, sem custo extra.",
+                "Novas estampas adicionadas todas as semanas, sem custo extra."
+              );
+            }
+            if (textNode.nodeValue.includes("Pastas categorizadas por tema e estilo para facilitar.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Pastas categorizadas por tema e estilo para facilitar.",
+                "Pastas organizadas por tema e estilo para facilitar."
+              );
+            }
+            if (textNode.nodeValue.includes("Download Instantâneo")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Download Instantâneo", "Acesso Imediato");
+            }
+            if (textNode.nodeValue.includes("Acesso liberado imediatamente após o pagamento.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Acesso liberado imediatamente após o pagamento.",
+                "Acesso liberado imediatamente após a confirmação do pagamento."
+              );
+            }
             if (textNode.nodeValue.includes("Artes Disponíveis")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Artes Disponíveis", "Artes Inclusas");
             }
