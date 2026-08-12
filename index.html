@@ -502,9 +502,12 @@
           document.querySelectorAll("video").forEach((video) => {
             video.controls = false;
             video.removeAttribute("controls");
-            video.autoplay = false;
-            video.removeAttribute("autoplay");
-            video.pause();
+            if (!video.dataset.initialPlaybackConfigured) {
+              video.autoplay = false;
+              video.removeAttribute("autoplay");
+              video.pause();
+              video.dataset.initialPlaybackConfigured = "true";
+            }
 
             const frame = video.parentElement;
             if (!frame) return;
