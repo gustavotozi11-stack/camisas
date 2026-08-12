@@ -47,6 +47,12 @@
             if (textNode.nodeValue.includes("1.247")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("1.247", "1.135");
             }
+            if (textNode.nodeValue.includes("Não gostou? Devolvemos 100%.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Não gostou? Devolvemos 100%.",
+                "Não gostou? Devolvemos seu dinheiro"
+              );
+            }
             if (textNode.nodeValue.includes("R$ 27,00")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("R$ 27,00", "R$ 19,00");
             }
