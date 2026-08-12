@@ -47,6 +47,12 @@
             if (textNode.nodeValue.includes("Profissionais Para")) {
               textNode.nodeValue = textNode.nodeValue.replace("Profissionais Para", "Prontas Para");
             }
+            if (textNode.nodeValue.includes("Designs exclusivos e prontos para impressão para quem deseja criar ou expandir um negócio de camisetas cristãs.")) {
+              textNode.nodeValue = textNode.nodeValue.replace(
+                "Designs exclusivos e prontos para impressão para quem deseja criar ou expandir um negócio de camisetas cristãs.",
+                "Estampas exclusivas e prontas para impressão para quem deseja criar ou expandir um negócio de camisetas cristãs."
+              );
+            }
           });
           document.querySelectorAll("h1").forEach((heading) => {
             const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
