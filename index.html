@@ -244,6 +244,30 @@
                 });
               }
             }
+            if (isBasicPlan && !list.querySelector('[data-basic-bonus-item="true"]')) {
+              const basicBonusItem = Array.from(list.querySelectorAll("li")).find((item) =>
+                item.textContent.includes("Bônus Exclusivo")
+              );
+              const positiveTemplate = Array.from(list.querySelectorAll("li")).find((item) =>
+                item.textContent.includes("3000 Artes Cristãs")
+              );
+              if (basicBonusItem && positiveTemplate) {
+                const basicBonusItems = [
+                  "Bônus 1: Pacote de 150 Fontes Cristãs",
+                  "Bônus 2: Planilha de Custos e Precificação",
+                  "Bônus 3: Calendário de Datas Cristãs"
+                ].map((bonusText) => {
+                  const bonusItem = positiveTemplate.cloneNode(true);
+                  bonusItem.dataset.basicBonusItem = "true";
+                  const bonusLabels = bonusItem.querySelectorAll("span");
+                  if (bonusLabels.length > 1) {
+                    bonusLabels[bonusLabels.length - 1].textContent = bonusText;
+                  }
+                  return bonusItem;
+                });
+                basicBonusItem.replaceWith(...basicBonusItems);
+              }
+            }
           });
           document.querySelectorAll("h2").forEach((heading) => {
             if (heading.textContent.includes("Escolha Seu Acesso")) {
