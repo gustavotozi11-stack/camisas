@@ -38,6 +38,9 @@
             if (textNode.nodeValue.includes("2500")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("2500", "3000");
             }
+            if (textNode.nodeValue.includes("Profissionais Para")) {
+              textNode.nodeValue = textNode.nodeValue.replace("Profissionais Para", "Prontas Para");
+            }
           });
         };
         new MutationObserver(updateCount).observe(document.body, {
