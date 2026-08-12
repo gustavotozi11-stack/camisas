@@ -224,6 +224,9 @@
             if (textNode.nodeValue.trim() === "3.5k") {
               textNode.nodeValue = "2.7k";
             }
+            if (textNode.nodeValue.trim() === "Hoje Mesmo") {
+              textNode.nodeValue = "Agora Mesmo";
+            }
           });
           document.querySelectorAll("h3").forEach((heading) => {
             if (heading.textContent.includes("Pacote Premium")) {
