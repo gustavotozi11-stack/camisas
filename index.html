@@ -126,7 +126,10 @@
               );
             }
             if (textNode.nodeValue.includes("Sem Suporte")) {
-              textNode.nodeValue = textNode.nodeValue.replaceAll("Sem Suporte", "Suporte Exclusivos");
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Sem Suporte", "Suporte Exclusivo");
+            }
+            if (textNode.nodeValue.includes("Suporte Exclusivos")) {
+              textNode.nodeValue = textNode.nodeValue.replaceAll("Suporte Exclusivos", "Suporte Exclusivo");
             }
             if (textNode.nodeValue.includes("Artes Disponíveis")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Artes Disponíveis", "Artes Inclusas");
@@ -161,6 +164,33 @@
                 "Pague apenas uma vez e tenha acesso imediato ao material."
               );
             }
+          });
+          document.querySelectorAll("h3").forEach((heading) => {
+            if (heading.textContent.includes("Pacote Premium")) {
+              heading.childNodes.forEach((child) => {
+                if (child.nodeType === Node.TEXT_NODE) {
+                  child.nodeValue = child.nodeValue.replace("Pacote", "Plano");
+                }
+              });
+            }
+            const isBasicPlan = heading.textContent.includes("Plano Básico");
+            const isPremiumPlan = heading.textContent.includes("Premium");
+            if (!isBasicPlan && !isPremiumPlan) return;
+            const card = heading.closest("div.reveal");
+            const list = card && card.querySelector("ul");
+            if (!list) return;
+            const supportItem = Array.from(list.querySelectorAll("li")).find((item) =>
+              item.textContent.includes("Suporte Exclusivo")
+            );
+            if (!supportItem || list.querySelector('[data-guarantee-item="true"]')) return;
+            const guaranteeItem = supportItem.cloneNode(true);
+            guaranteeItem.dataset.guaranteeItem = "true";
+            const labels = guaranteeItem.querySelectorAll("span");
+            if (labels.length > 1) {
+              labels[labels.length - 1].textContent = "Garantia de 7 dias";
+              if (isBasicPlan) labels[labels.length - 1].classList.add("line-through");
+            }
+            supportItem.before(guaranteeItem);
           });
           document.querySelectorAll("h2").forEach((heading) => {
             if (heading.textContent.includes("Escolha Seu Acesso")) {
