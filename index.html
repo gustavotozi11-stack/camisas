@@ -665,6 +665,28 @@
         removeStickyOffer();
       })();
     </script>
+    <script>
+      (() => {
+        const resizeHeroSubtitle = () => {
+          document.querySelectorAll("p").forEach((paragraph) => {
+            if (
+              paragraph.textContent.trim() ===
+              "Estampas exclusivas e prontas para impressão para quem deseja criar ou expandir um negócio de camisetas cristãs."
+            ) {
+              paragraph.classList.remove("text-base", "sm:text-lg");
+              paragraph.classList.add("text-sm", "sm:text-base");
+            }
+          });
+        };
+
+        new MutationObserver(resizeHeroSubtitle).observe(document.body, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+        resizeHeroSubtitle();
+      })();
+    </script>
   
 
 </body></html>
