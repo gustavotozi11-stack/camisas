@@ -511,11 +511,24 @@
           document.querySelectorAll("video").forEach((video) => {
             video.controls = false;
             video.removeAttribute("controls");
+            video.preload = "auto";
+            video.poster = "images/video-poster.jpg";
             if (!video.dataset.initialPlaybackConfigured) {
               video.autoplay = false;
               video.removeAttribute("autoplay");
               video.pause();
               video.dataset.initialPlaybackConfigured = "true";
+            }
+            if (!video.dataset.initialFrameBound) {
+              const preserveInitialFrame = () => {
+                video.pause();
+                video.currentTime = 0;
+              };
+              video.addEventListener("loadeddata", preserveInitialFrame, { once: true });
+              if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+                preserveInitialFrame();
+              }
+              video.dataset.initialFrameBound = "true";
             }
 
             const frame = video.parentElement;
