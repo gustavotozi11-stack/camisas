@@ -648,6 +648,23 @@
         );
       })();
     </script>
+    <script>
+      (() => {
+        const removeStickyOffer = () => {
+          document.querySelectorAll("div.fixed").forEach((element) => {
+            if (element.textContent.includes("Garantir agora")) {
+              element.remove();
+            }
+          });
+        };
+
+        new MutationObserver(removeStickyOffer).observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+        removeStickyOffer();
+      })();
+    </script>
   
 
 </body></html>
