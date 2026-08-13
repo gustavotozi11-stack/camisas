@@ -625,6 +625,29 @@
         removeVideoOptions();
       })();
     </script>
+    <script>
+      (() => {
+        const checkoutDestinations = {
+          "Garantir Meu Acesso": "https://pay.cakto.com.br/3e9spq2",
+          "Não, quero continuar com o plano básico": "https://pay.cakto.com.br/39mb5ku_1034640",
+          "Quero o Premium com Desconto": "https://pay.cakto.com.br/3bq5g66",
+        };
+
+        document.addEventListener(
+          "click",
+          (event) => {
+            const button = event.target.closest("button");
+            const destination = button && checkoutDestinations[button.textContent.trim()];
+            if (!destination) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            window.location.assign(destination);
+          },
+          true
+        );
+      })();
+    </script>
   
 
 </body></html>
