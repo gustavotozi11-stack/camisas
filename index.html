@@ -151,8 +151,14 @@
             if (textNode.nodeValue.trim() === "22") {
               textNode.nodeValue = textNode.nodeValue.replace("22", "14");
             }
-            if (textNode.nodeValue.includes("Pacote Premium")) {
-              textNode.nodeValue = textNode.nodeValue.replaceAll("Pacote Premium", "Plano Premium");
+            if (
+              textNode.nodeValue.includes("Pacote Premium 2026") ||
+              textNode.nodeValue.includes("Plano Premium 2026")
+            ) {
+              const premiumBadge = textNode.parentElement;
+              if (premiumBadge?.textContent.includes("Premium 2026")) {
+                premiumBadge.remove();
+              }
             }
             if (textNode.nodeValue.includes("Atualizações Vitalícias")) {
               textNode.nodeValue = textNode.nodeValue.replaceAll("Atualizações Vitalícias", "Atualizações Semanais");
@@ -685,6 +691,25 @@
           characterData: true,
         });
         resizeHeroSubtitle();
+      })();
+    </script>
+    <script>
+      (() => {
+        const removePremiumBadge = () => {
+          document.querySelectorAll("span").forEach((badge) => {
+            const label = badge.textContent.trim();
+            if (label === "Plano Premium 2026" || label === "Pacote Premium 2026") {
+              badge.remove();
+            }
+          });
+        };
+
+        new MutationObserver(removePremiumBadge).observe(document.body, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+        removePremiumBadge();
       })();
     </script>
   
